@@ -68,8 +68,8 @@ public class Mob {
 		for(int i = 0;; i++){
 			if(this.getInitiative()[i] > current.getInitiative()[i]){
 				if(last == null){
-					this.nextMob = Main.head;
-					Main.head = this;
+					this.nextMob = DnD.head;
+					DnD.head = this;
 				}else{
 					this.nextMob = current;
 					last.setNextMob(this);

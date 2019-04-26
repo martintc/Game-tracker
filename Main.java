@@ -1,43 +1,87 @@
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class Main {
-	public static Mob head = null;
-	public static int initiativeSpot = 0;
+class Main {
 	
-	public static void main(String args[]){
-		GUI myInterface = new GUI();
-		myInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		myInterface.setSize(370,600);
-		myInterface.setVisible(true);
-		myInterface.setResizable(false);
+	/*
+	 * Main entry point of program
+	 */
+	public static void main(String[] args) {
+		Main main = new Main();
+		main.run();
+	}
+
+	/*
+	 * Creates the JFrame that holds the Main menu
+	 */
+	public void run() {
+
+		JFrame mainFrame = new JFrame("Main Menu");
+		mainFrame.setVisible(true);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.setSize(500, 500);
+		mainFrame.add(gameMenuPanel());
+
+
 	}
 	
-	public static String genDisplayText(){
-		String displayText = "";
-		Mob tempMob = head;
-		for(int i = 1; tempMob != null; i++){
-			displayText += i + ": " + tempMob.getName() + "\t" + "( " + (tempMob.getHp()-tempMob.getDmg()) + " / " + tempMob.getHp() + " )";
-			if(i == initiativeSpot){
-				displayText += "***";
-			}
-			displayText += "\n";
-			tempMob = tempMob.getNextMob();
+	/*
+	 * Generates the panel of game options and populates.
+	 */
+	public JPanel gameMenuPanel() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout());
+		panel.setVisible(true);
+		ArrayList<JButton> gameButtons = this.gameChoicesButtons();
+		for (JButton game : gameButtons) {
+			panel.add(game);
+			game.addActionListener(new EventHandler());
 		}
-		return displayText;
+		return panel;
+	}
+
+	/*
+	 * Generates a button for each game name.
+	 */
+	public ArrayList<JButton> gameChoicesButtons() {
+		ArrayList<JButton> games = new ArrayList<>();
+		
+		ArrayList<String> gameNames = this.gameNames();
+
+		for (String game: gameNames) {
+			games.add(new JButton(game));
+		}
+
+		return games;
 	}
 	
-	public static void damage(int num, int dmg, Mob thisMob){
-		num--;
-		if(num == 0){
-			thisMob.addDmg(dmg);
-			if(! thisMob.isAlive()){
-				JOptionPane.showMessageDialog(null, thisMob.getName() + " is dead!");
-			}else if(thisMob.getDmg() > thisMob.getHp()/2){
-				JOptionPane.showMessageDialog(null, thisMob.getName() + " is looking bloody! (Past half HP)");
-			}
-		}else{
-			damage(num, dmg, thisMob.getNextMob());
-		}
+	/*
+	 * Creates the list of game names.
+	 */
+	public ArrayList<String> gameNames() {
+		ArrayList<String> games = new ArrayList<>();
+		games.add("DnD");
+
+		return games;
 	}
+
+	/*
+	 * Class that will handle events within this class.
+	 */
+	private class EventHandler implements ActionListener {
+		public void actionPerformed (ActionEvent e) {
+		 	String choice = e.getActionCommand();
+		  	if (choice.equals("DnD")) {
+				DnD dnd = new DnD();
+				dnd.run();	
+			}	
+		}	
+	
+	}
+
 }
