@@ -78,46 +78,46 @@ public class GUI extends JFrame{
 	private class EventHandler implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(event.getSource()==add){
-				if(Main.initiativeSpot == 0){
+				if(DnD.initiativeSpot == 0){
 					Mob newMob = new Mob();
 					newMob.setName(JOptionPane.showInputDialog("Enter the name: "));
 					newMob.setHp(Integer.parseInt(JOptionPane.showInputDialog("Enter the max HP: ")));
 					newMob.addInitiative(Integer.parseInt(JOptionPane.showInputDialog("Enter their initiative: ")));
-					if(Main.head == null){
-						Main.head = newMob;
+					if(DnD.head == null){
+						DnD.head = newMob;
 					}else{
-						newMob.insertSelf(Main.head, null);
+						newMob.insertSelf(DnD.head, null);
 					}
-					display.setText(Main.genDisplayText());
+					display.setText(DnD.genDisplayText());
 				}else{
 					JOptionPane.showMessageDialog(null, "You may only add new participants at the top of initiative.");
 				}
 			}else if(event.getSource()==damage){
 				int n = Integer.parseInt(JOptionPane.showInputDialog("Mob number: "));
 				int d = Integer.parseInt(JOptionPane.showInputDialog("Enter the amount of damage to be done: "));
-				Main.damage(n, d, Main.head);
-				display.setText(Main.genDisplayText());
+				DnD.damage(n, d, DnD.head);
+				display.setText(DnD.genDisplayText());
 			}else if(event.getSource()==next){
-				if(Main.head != null){
+				if(DnD.head != null){
 					do{
 						if(currentMob == null){
-							currentMob = Main.head;
-							Main.initiativeSpot++;
+							currentMob = DnD.head;
+							DnD.initiativeSpot++;
 						}else{
 							if(currentMob.getNextMob() == null){
 								currentMob = null;
-								Main.initiativeSpot = 0;
+								DnD.initiativeSpot = 0;
 							}else{
 								currentMob = currentMob.getNextMob();
-								Main.initiativeSpot++;
+								DnD.initiativeSpot++;
 							}
 						}
 						if(currentMob == null){ //ugh...
 							break;
 						}
 					}while(!currentMob.isAlive());
-					display.setText(Main.genDisplayText());
-					if(Main.initiativeSpot == 0){
+					display.setText(DnD.genDisplayText());
+					if(DnD.initiativeSpot == 0){
 						JOptionPane.showMessageDialog(null, "Top of initiative! You may now add new mobs to the encounter, or press Next again to keep playing.");
 					}else{
 						JOptionPane.showMessageDialog(null, "It's " + currentMob.getName() + "'s turn!");
@@ -125,9 +125,9 @@ public class GUI extends JFrame{
 				}
 			}else if(event.getSource()==clear){
 				if(JOptionPane.showConfirmDialog(null, "Are you SURE you want to clear?") == 0){
-					Main.head = null;
-					Main.initiativeSpot = 0;
-					display.setText(Main.genDisplayText());
+					DnD.head = null;
+					DnD.initiativeSpot = 0;
+					display.setText(DnD.genDisplayText());
 				}
 			}
 		}
