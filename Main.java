@@ -33,7 +33,7 @@ class Main {
 	/*
 	 * Generates the panel of game options and populates.
 	 */
-	public JPanel gameMenuPanel() {
+	protected JPanel gameMenuPanel() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout());
 		panel.setVisible(true);
@@ -48,7 +48,7 @@ class Main {
 	/*
 	 * Generates a button for each game name.
 	 */
-	public ArrayList<JButton> gameChoicesButtons() {
+	protected ArrayList<JButton> gameChoicesButtons() {
 		ArrayList<JButton> games = new ArrayList<>();
 		
 		ArrayList<String> gameNames = this.gameNames();
@@ -63,7 +63,7 @@ class Main {
 	/*
 	 * Creates the list of game names.
 	 */
-	public ArrayList<String> gameNames() {
+	protected ArrayList<String> gameNames() {
 		ArrayList<String> games = new ArrayList<>();
 		games.add("DnD");
 
