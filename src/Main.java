@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import DungeonsAndDragons.DnD;
 
 class Main {
 	
@@ -77,8 +78,7 @@ class Main {
 		public void actionPerformed (ActionEvent e) {
 		 	String choice = e.getActionCommand();
 		  	if (choice.equals("DnD")) {
-				DnD dnd = new DnD();
-				dnd.run();	
+				DnD.run();	
 			}	
 		}	
 	
