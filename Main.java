@@ -77,8 +77,7 @@ class Main {
 		public void actionPerformed (ActionEvent e) {
 		 	String choice = e.getActionCommand();
 		  	if (choice.equals("DnD")) {
-				DnD dnd = new DnD();
-				dnd.run();	
+				DnD.run();	
 			}	
 		}	
 	
