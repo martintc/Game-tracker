@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import DungeonsAndDragons.DnD;
 
 class Main {
 	
@@ -33,7 +34,7 @@ class Main {
 	/*
 	 * Generates the panel of game options and populates.
 	 */
-	public JPanel gameMenuPanel() {
+	protected JPanel gameMenuPanel() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout());
 		panel.setVisible(true);
@@ -48,7 +49,7 @@ class Main {
 	/*
 	 * Generates a button for each game name.
 	 */
-	public ArrayList<JButton> gameChoicesButtons() {
+	protected ArrayList<JButton> gameChoicesButtons() {
 		ArrayList<JButton> games = new ArrayList<>();
 		
 		ArrayList<String> gameNames = this.gameNames();
@@ -63,7 +64,7 @@ class Main {
 	/*
 	 * Creates the list of game names.
 	 */
-	public ArrayList<String> gameNames() {
+	protected ArrayList<String> gameNames() {
 		ArrayList<String> games = new ArrayList<>();
 		games.add("DnD");
 
@@ -77,8 +78,7 @@ class Main {
 		public void actionPerformed (ActionEvent e) {
 		 	String choice = e.getActionCommand();
 		  	if (choice.equals("DnD")) {
-				DnD dnd = new DnD();
-				dnd.run();	
+				DnD.run();	
 			}	
 		}	
 	

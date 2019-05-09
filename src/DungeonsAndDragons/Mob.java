@@ -1,3 +1,5 @@
+package DungeonsAndDragons;
+
 import javax.swing.JOptionPane;
 
 public class Mob {
