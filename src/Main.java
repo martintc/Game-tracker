@@ -1,3 +1,5 @@
+import initiativeDnD.DnD;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -5,7 +7,6 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import DungeonsAndDragons.DnD;
 
 class Main {
 	

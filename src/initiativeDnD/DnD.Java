@@ -1,6 +1,5 @@
-package DungeonsAndDragons;
+package initiativeDnD;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class DnD {
@@ -9,7 +8,6 @@ public class DnD {
 	
 	public static void run(){
 		GUI myInterface = new GUI();
-		myInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		myInterface.setSize(370,600);
 		myInterface.setVisible(true);
 		myInterface.setResizable(false);
@@ -39,7 +37,12 @@ public class DnD {
 				JOptionPane.showMessageDialog(null, thisMob.getName() + " is looking bloody! (Past half HP)");
 			}
 		}else{
-			damage(num, dmg, thisMob.getNextMob());
+			if(thisMob.getNextMob() == null){
+				JOptionPane.showMessageDialog(null, "That was an invalid mob number.");
+			}else{
+				damage(num, dmg, thisMob.getNextMob());
+			}
+			
 		}
 	}
 }

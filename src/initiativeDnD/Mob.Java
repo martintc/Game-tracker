@@ -1,4 +1,4 @@
-package DungeonsAndDragons;
+package initiativeDnD;
 
 import javax.swing.JOptionPane;
 

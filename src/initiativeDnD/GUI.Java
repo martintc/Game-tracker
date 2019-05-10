@@ -1,4 +1,4 @@
-package DungeonsAndDragons;
+package initiativeDnD;
 
 import javax.swing.*;
 import java.awt.*;
@@ -83,8 +83,28 @@ public class GUI extends JFrame{
 				if(DnD.initiativeSpot == 0){
 					Mob newMob = new Mob();
 					newMob.setName(JOptionPane.showInputDialog("Enter the name: "));
-					newMob.setHp(Integer.parseInt(JOptionPane.showInputDialog("Enter the max HP: ")));
-					newMob.addInitiative(Integer.parseInt(JOptionPane.showInputDialog("Enter their initiative: ")));
+					boolean bad = false;
+					do{
+						try{
+							newMob.setHp(Integer.parseInt(JOptionPane.showInputDialog("Enter the max HP: ")));
+						}catch(NumberFormatException e){
+							JOptionPane.showMessageDialog(null, "HP value must be a number.");
+							bad = true;
+							continue;
+						}
+						bad = false;
+					}while(bad);
+					do{
+						try{
+							newMob.addInitiative(Integer.parseInt(JOptionPane.showInputDialog("Enter their initiative: ")));
+						}catch(NumberFormatException e){
+							JOptionPane.showMessageDialog(null, "Initiative value must be a number.");
+							bad = true;
+							continue;
+						}
+						bad = false;
+					}while(bad);
+					
 					if(DnD.head == null){
 						DnD.head = newMob;
 					}else{
@@ -95,8 +115,34 @@ public class GUI extends JFrame{
 					JOptionPane.showMessageDialog(null, "You may only add new participants at the top of initiative.");
 				}
 			}else if(event.getSource()==damage){
-				int n = Integer.parseInt(JOptionPane.showInputDialog("Mob number: "));
-				int d = Integer.parseInt(JOptionPane.showInputDialog("Enter the amount of damage to be done: "));
+				int n = 0, d = 0;
+				boolean bad = false;
+				do{
+					try{
+						n = Integer.parseInt(JOptionPane.showInputDialog("Mob number: "));
+					}catch(NumberFormatException e){
+						JOptionPane.showMessageDialog(null, "Mob number must be a positive integer.");
+						bad = true;
+						continue;
+					}
+					if(n<1){
+						JOptionPane.showMessageDialog(null, "Mob number must be a positive integer.");
+						bad = true;
+						continue;
+					}
+					bad = false;
+				}while(bad);
+				do{
+					try{
+						d = Integer.parseInt(JOptionPane.showInputDialog("Enter the amount of damage to be done: "));
+					}catch(NumberFormatException e){
+						JOptionPane.showMessageDialog(null, "Damage must be a positive integer.");
+						bad = true;
+						continue;
+					}
+					bad = false;
+				}while(bad);
+
 				DnD.damage(n, d, DnD.head);
 				display.setText(DnD.genDisplayText());
 			}else if(event.getSource()==next){
