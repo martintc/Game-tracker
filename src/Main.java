@@ -1,4 +1,5 @@
 import initiativeDnD.DnD;
+import lootTableDnD.Loot;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -67,7 +68,8 @@ class Main {
 	 */
 	protected ArrayList<String> gameNames() {
 		ArrayList<String> games = new ArrayList<>();
-		games.add("DnD");
+		games.add("DnD Initiative");
+		games.add("DnD Loot");
 
 		return games;
 	}
@@ -78,9 +80,11 @@ class Main {
 	private class EventHandler implements ActionListener {
 		public void actionPerformed (ActionEvent e) {
 		 	String choice = e.getActionCommand();
-		  	if (choice.equals("DnD")) {
+		  	if (choice.equals("DnD Initiative")) {
 				DnD.run();	
-			}	
+			}else if(choice.equals("DnD Loot")){
+				Loot.run();
+			}
 		}	
 	
 	}
