@@ -2,10 +2,7 @@ package lootTableDnD;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-
 import javax.swing.JOptionPane;
-
-import initiativeDnD.GUI;
 
 public class Loot {
 	public static void run(){
@@ -30,6 +27,7 @@ public class Loot {
 		 * 
 		 */
 	}
+	
 	public void getItem(int itemNum){
 		try{
 			BufferedReader reader = new BufferedReader(new FileReader("loot.csv"));
@@ -42,8 +40,5 @@ public class Loot {
 			e.printStackTrace();
 		}
 	}
-		
-		
-		
-	
+
 }
