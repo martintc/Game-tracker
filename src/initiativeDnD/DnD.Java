@@ -7,7 +7,7 @@ public class DnD {
 	public static int initiativeSpot = 0;
 	
 	public static void run(){
-		GUI myInterface = new GUI();
+		initiativeDnD.GUI myInterface = new initiativeDnD.GUI();
 		myInterface.setSize(370,600);
 		myInterface.setVisible(true);
 		myInterface.setResizable(false);
@@ -37,7 +37,9 @@ public class DnD {
 				JOptionPane.showMessageDialog(null, thisMob.getName() + " is looking bloody! (Past half HP)");
 			}
 		}else{
-			if(thisMob.getNextMob() == null){
+			if(thisMob == null){
+				JOptionPane.showMessageDialog(null, "That was an invalid mob number.");
+			}else if(thisMob.getNextMob() == null){
 				JOptionPane.showMessageDialog(null, "That was an invalid mob number.");
 			}else{
 				damage(num, dmg, thisMob.getNextMob());
@@ -46,3 +48,16 @@ public class DnD {
 		}
 	}
 }
+
+
+/*-----------------------------------
+ * 				To-do
+ * 	* Add a scroll bar to the mob list
+ * 
+ */
+
+
+
+
+
+
