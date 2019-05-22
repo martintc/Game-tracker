@@ -21,24 +21,23 @@ public class Loot {
 			lootTableDnD.GUI myInterface = new lootTableDnD.GUI(false);
 		}
 		
-		/*
-		 * 
-		 * Get itemNum via rolls
-		 * 
-		 */
 	}
 	
 	public void getItem(int itemNum){
+		String[] item;
 		try{
-			BufferedReader reader = new BufferedReader(new FileReader("loot.csv"));
+			BufferedReader reader = new BufferedReader(new FileReader("loot.csv")); // Change so they can choose.
 			for(int i = 1; i<itemNum; ++i){
-				//readLine for a while
 				reader.readLine();
 			}
+			item = reader.readLine().split(";");
 			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		
+		//Do the display in this method. Just a really big JOptionPane.showMessageDialog ?
+		//	-Potential issue: long text does NOT wrap...
 	}
 
 }
