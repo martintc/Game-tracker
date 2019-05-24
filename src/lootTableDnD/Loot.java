@@ -7,8 +7,9 @@ import javax.swing.JOptionPane;
 public class Loot {
 	public static void run(){
 		int choice;
+		lootTableDnD.GUI myInterface = null;
 		
-		/*Special rules are those used by Freak's friends.
+		/*Special rules are those used by Freak's friends. (Requires a loot table with 1000 items)
 			D12		determines what you get
 			D1000	determines what kind of item you get
 			D20		decides number of coins (if platinum, then halved)
@@ -16,11 +17,16 @@ public class Loot {
 		*/
 		choice = JOptionPane.showConfirmDialog(null, "Would you like to use the special rules?");
 		if(choice == 0){ //Use special rules
-			lootTableDnD.GUI myInterface = new lootTableDnD.GUI();
+			myInterface = new lootTableDnD.GUI(true);
+			myInterface.setSize(250,300);
 		}else if(choice == 1){
-			lootTableDnD.GUI myInterface = new lootTableDnD.GUI(false);
+			myInterface = new lootTableDnD.GUI(false);
+			myInterface.setSize(100,100); //change
 		}
-		
+		if(choice != 2){
+			myInterface.setVisible(true);
+			myInterface.setResizable(false);
+		}
 	}
 	
 	public void getItem(int itemNum){
@@ -31,6 +37,8 @@ public class Loot {
 				reader.readLine();
 			}
 			item = reader.readLine().split(";");
+			
+			
 			
 		}catch(Exception e){
 			e.printStackTrace();
