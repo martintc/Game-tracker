@@ -23,14 +23,11 @@ class Main {
 	 * Creates the JFrame that holds the Main menu
 	 */
 	public void run() {
-
 		JFrame mainFrame = new JFrame("Main Menu");
 		mainFrame.setVisible(true);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setSize(500, 500);
 		mainFrame.add(gameMenuPanel());
-
-
 	}
 	
 	/*
