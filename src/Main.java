@@ -1,4 +1,5 @@
 import initiativeDnD.DnD;
+import lootTableDnD.Loot;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,14 +23,11 @@ class Main {
 	 * Creates the JFrame that holds the Main menu
 	 */
 	public void run() {
-
 		JFrame mainFrame = new JFrame("Main Menu");
 		mainFrame.setVisible(true);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setSize(500, 500);
 		mainFrame.add(gameMenuPanel());
-
-
 	}
 	
 	/*
@@ -67,7 +65,8 @@ class Main {
 	 */
 	protected ArrayList<String> gameNames() {
 		ArrayList<String> games = new ArrayList<>();
-		games.add("DnD");
+		games.add("DnD Initiative");
+		games.add("DnD Loot");
 
 		return games;
 	}
@@ -78,9 +77,11 @@ class Main {
 	private class EventHandler implements ActionListener {
 		public void actionPerformed (ActionEvent e) {
 		 	String choice = e.getActionCommand();
-		  	if (choice.equals("DnD")) {
+		  	if (choice.equals("DnD Initiative")) {
 				DnD.run();	
-			}	
+			}else if(choice.equals("DnD Loot")){
+				Loot.run();
+			}
 		}	
 	
 	}
