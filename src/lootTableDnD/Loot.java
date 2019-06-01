@@ -21,7 +21,7 @@ public class Loot {
 			myInterface.setSize(250,300);
 		}else if(choice == 1){
 			myInterface = new lootTableDnD.GUI(false);
-			myInterface.setSize(100,100); //change
+			myInterface.setSize(200,200); //change
 		}
 		if(choice != 2){
 			myInterface.setVisible(true);
@@ -29,23 +29,36 @@ public class Loot {
 		}
 	}
 	
-	public void getItem(int itemNum){
-		String[] item;
+	public static void getItem(String path, int reward, int hundreds, int tens, int ones, int coins, int multi){
+		int lootNum;
+		String line = "";
+		if(hundreds == 0 && tens == 0 && ones == 0){
+			lootNum = 1000;
+		}else{
+			lootNum = (hundreds*100)+(tens*10)+(ones);
+		}
+
 		try{
-			BufferedReader reader = new BufferedReader(new FileReader("loot.csv")); // Change so they can choose.
-			for(int i = 1; i<itemNum; ++i){
+			BufferedReader reader = new BufferedReader(new FileReader(path));
+			
+			for(int i = 1; i<lootNum; ++i){
 				reader.readLine();
 			}
-			item = reader.readLine().split(";");
 			
+			line = reader.readLine();
+			reader.close();
 			
-			
-		}catch(Exception e){
-			e.printStackTrace();
+		}catch (Exception e){
+			JOptionPane.showMessageDialog(null, e);
 		}
+		JOptionPane.showMessageDialog(null, line);
 		
 		//Do the display in this method. Just a really big JOptionPane.showMessageDialog ?
 		//	-Potential issue: long text does NOT wrap...
+		
+		//The file was fucked up so they're going to remake it.
+		
+		//You should add a menu item "about" that explains the loot table requirements and the way the fields work.
 	}
 
 }
