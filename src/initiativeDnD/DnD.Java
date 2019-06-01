@@ -7,6 +7,7 @@ public class DnD {
 	public static int initiativeSpot = 0;
 	
 	public static void run(){
+		head = null;
 		initiativeDnD.GUI myInterface = new initiativeDnD.GUI();
 		myInterface.setSize(370,600);
 		myInterface.setVisible(true);
