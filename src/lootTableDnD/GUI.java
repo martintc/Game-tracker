@@ -152,8 +152,7 @@ public class GUI extends JFrame{
 					}
 				}
 			}else if(event.getSource() == selectTable){
-				int val = chooser.showOpenDialog(null);
-				if(val == JFileChooser.APPROVE_OPTION){
+				if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
 					path = chooser.getSelectedFile().getAbsolutePath();
 				}
 			}
