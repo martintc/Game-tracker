@@ -9,7 +9,7 @@ public class DnD {
 	public static void run(){
 		head = null;
 		initiativeDnD.GUI myInterface = new initiativeDnD.GUI();
-		myInterface.setSize(370,600);
+		myInterface.setSize(370,630);
 		myInterface.setVisible(true);
 		myInterface.setResizable(false);
 	}
