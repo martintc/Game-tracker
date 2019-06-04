@@ -6,6 +6,7 @@ Loot module:
 * Implement all of generic rules
 * Implement random loot for special rules
 * Create custom popup for easy loot viewing
+* Add an "about" menu item that explains the rules and table requirements
 
 
 Initiative Tracker:
