@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class Mob {
 	private int hp;
-	private String name;
+	private String name = null;
 	private int initiative[] = {};
 	private int dmgTaken = 0;
 	private Mob nextMob = null;
