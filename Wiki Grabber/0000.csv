@@ -1,0 +1,14 @@
+Size/Align,AC,HP,Speed,,
+str,dex,con,int,wis,cha
+str save,dex save,con save,int save,wis save,cha save
+skills,,,,,
+vulns,,,https://www.dandwiki.com/wiki/Ashen_Beast_(5e_Creature),,
+resists,,,https://www.dandwiki.com/wiki/Ashen_Beast_(5e_Creature),,
+immunes,,,https://www.dandwiki.com/wiki/Adult_Brown_Dragon_(5e_Creature),,
+Senses,,,,,
+Languages,,,,,
+Challenge,,,,,
+Feature 1,Feature 2,…,,,
+Action 1,Action 2,…,,,
+Legendary 1,Legendary 2,…,https://www.dandwiki.com/wiki/Ashen_Beast_(5e_Creature),,
+Reaction 1,Reaction 2,…,https://www.dandwiki.com/wiki/Taros_(5e_Creature),,
