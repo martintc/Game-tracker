@@ -1,0 +1,15 @@
+To do list:
+
+
+Loot module:
+
+* Implement all of generic rules
+* Implement random loot for special rules
+* Create custom popup for easy loot viewing
+
+
+Initiative Tracker:
+
+* Add save option (JMenuBar)
+* Add scroll bar
+* Add option to change text size
