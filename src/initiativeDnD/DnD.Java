@@ -18,6 +18,9 @@ public class DnD {
 		String displayText = "";
 		Mob tempMob = head;
 		for(int i = 1; tempMob != null; i++){
+			if(tempMob.getName() == null){
+				break;
+			}
 			displayText += i + ": " + tempMob.getName() + "\t" + "( " + (tempMob.getHp()-tempMob.getDmg()) + " / " + tempMob.getHp() + " )";
 			if(i == initiativeSpot){
 				displayText += "***";
@@ -45,20 +48,6 @@ public class DnD {
 			}else{
 				damage(num, dmg, thisMob.getNextMob());
 			}
-			
 		}
 	}
 }
-
-
-/*-----------------------------------
- * 				To-do
- * 	* Add a scroll bar to the mob list
- * 
- */
-
-
-
-
-
-
