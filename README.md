@@ -15,3 +15,9 @@ Changelog:
 1.0: Moved the initiative tracker to its own package and made the main class into a menu to select different modules
 
 0.9: Original version by Freak posted on Haxme that only included the initiative tracker
+
+# Wiki Grabber
+This will pull the stats for every single 5e monster on dandwiki (https://www.dandwiki.com/wiki/5e_Monsters) and puts the information into individual .csv files for a comprehensive database.
+
+We do not own anything on dandwiki. dandwiki should not contain any copyrighted material, and therefore no database items should be property of Wizards of the Coast LLC or any other entity.
+
