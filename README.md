@@ -26,4 +26,6 @@ We do not own anything on dandwiki. dandwiki should not contain any copyrighted 
 ----------------
 Changelog:
 
+0.2: Row 3 should now be working for all entries. Hopefully.
+
 0.1: Currently the program can properly fill out the first 2 rows of the database design. Working on row 3.
