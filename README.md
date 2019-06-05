@@ -16,8 +16,14 @@ Changelog:
 
 0.9: Original version by Freak posted on Haxme that only included the initiative tracker
 
-# Wiki Grabber
+# Wiki Grabber v0.1
 This will pull the stats for every single 5e monster on dandwiki (https://www.dandwiki.com/wiki/5e_Monsters) and puts the information into individual .csv files for a comprehensive database.
+
+Model .csv file is uploaded as 0000.csv The links in the table are just notes for certain entries that have those characteristics.
 
 We do not own anything on dandwiki. dandwiki should not contain any copyrighted material, and therefore no database items should be property of Wizards of the Coast LLC or any other entity.
 
+----------------
+Changelog:
+
+0.1: Currently the program can properly fill out the first 2 rows of the database design. Working on row 3.
