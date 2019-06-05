@@ -31,7 +31,12 @@ while($mainContents =~ /\<a href=\"(.*?)\"/g){
 				#-----------------------------------------------------------------------------------------------------------------------
 				while($thisContent =~ /\n\<td\> (.*?) \((.*?)\)/g){print DATA "\"".$1."\",";}									#ability scores
 				#do saves here
-				if($thisContent =~ /Strength(.*?)\<\/a\> \+(\d*?)/){print DATA "\"".$1."\",";}else{print DATA ",";}	#wip
+				if($thisContent =~ /Strength(.*?)\<\/a\> \+( \d*|\d*)/){print DATA "\n\"".$2."\",";}else{print DATA "\n,";}
+				if($thisContent =~ /Dexterity(.*?)\<\/a\> \+( \d*|\d*)/){print DATA "\"".$2."\",";}else{print DATA ",";}
+				if($thisContent =~ /Constitution(.*?)\<\/a\> \+( \d*|\d*)/){print DATA "\"".$2."\",";}else{print DATA ",";}
+				if($thisContent =~ /Intelligence(.*?)\<\/a\> \+( \d*|\d*)/){print DATA "\"".$2."\",";}else{print DATA ",";}
+				if($thisContent =~ /Wisdom(.*?)\<\/a\> \+( \d*|\d*)/){print DATA "\"".$2."\",";}else{print DATA ",";}
+				if($thisContent =~ /Charisma(.*?)\<\/a\> \+( \d*|\d*)/){print DATA "\"".$2."\",";}else{print DATA ",";}
 				
 
 				#-----------------------------------------------------------------------------------------------------------------------
