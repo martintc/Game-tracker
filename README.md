@@ -1,8 +1,10 @@
-# Game-tracker v1.3b
+# Game-tracker v1.4
 This will be a modified version of the DnD initiative tracker that I put on Haxme. It will include tracking for additional RPGs and other games such as MTG
 
 ----------------
 Changelog:
+
+1.4: The GUI class now uses your rolls by default when you press the enter key. It also checks to make sure that all 6 fields are not only integers, but that they are in the proper range. The Loot class now properly displays the correct kind and number of coins in addition to loot.
 
 1.3b: To the initiative tracker: Added the Window JMenu, and the Text Size and Text Style options within it. Changed the default text area size, and changed the window size to pack. This allows automatic window scaling when changing text size.
 
