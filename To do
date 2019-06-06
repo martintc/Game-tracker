@@ -9,6 +9,8 @@ Loot module:
 * Add an "about" menu item that explains the rules and table requirements
 
 
-Initiative Tracker:
+Wiki grabber:
 
-* Add option to change text size
+* Fix issues with row 1
+* Fix issues with row 3
+* Continue working through rows. Start row 5
