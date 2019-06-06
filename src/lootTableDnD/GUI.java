@@ -106,6 +106,8 @@ public class GUI extends JFrame{
 /*---------------------------------
  * event handlers and action listeners
  */
+		getRootPane().setDefaultButton(myRolls);
+		
 		EventHandler handler = new EventHandler();
 		randomRolls.addActionListener(handler);
 		myRolls.addActionListener(handler);
@@ -119,15 +121,21 @@ public class GUI extends JFrame{
 				}else{
 					if(type){	//Special rules
 						boolean check = true;
-						for(int i = 0; i < fields.length; ++i){
-							try{
-								Integer.parseInt(fields[i].getText());
-							}catch(Exception e){
-								JOptionPane.showMessageDialog(null, "Error: "+e);
+						try{	//Check that entries are valid.
+							if(	(Integer.parseInt(fields[0].getText()) > 12 || Integer.parseInt(fields[0].getText()) < 1) || 
+								(Integer.parseInt(fields[1].getText()) > 10 || Integer.parseInt(fields[1].getText()) < 1) ||
+								(Integer.parseInt(fields[2].getText()) > 10 || Integer.parseInt(fields[2].getText()) < 1) ||
+								(Integer.parseInt(fields[3].getText()) > 10 || Integer.parseInt(fields[3].getText()) < 1) ||
+								(Integer.parseInt(fields[4].getText()) > 20 || Integer.parseInt(fields[4].getText()) < 1) ||
+								(Integer.parseInt(fields[5].getText()) > 10 || Integer.parseInt(fields[5].getText()) < 1) ){
+								JOptionPane.showMessageDialog(null, "Invalid entry. Make sure all values are within the bounds.");
 								check = false;
-								break;
 							}
+						}catch(Exception e){
+							JOptionPane.showMessageDialog(null, "Invalid entry: Make sure all values are integers.");
+							check = false;
 						}
+						
 						if(check){
 							Loot.getItem(path,
 										 Integer.parseInt(fields[0].getText()),
