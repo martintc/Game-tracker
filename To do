@@ -8,6 +8,11 @@ Loot module:
 * Create custom popup for easy loot viewing
 * Add an "about" menu item that explains the rules and table requirements
 
+Initiative tracker:
+
+* Implement the wiki database with custom monster popups
+* On the monster popups include a button that launches the wiki page in default browser
+
 
 Wiki grabber:
 
