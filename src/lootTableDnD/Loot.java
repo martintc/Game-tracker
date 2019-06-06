@@ -32,33 +32,64 @@ public class Loot {
 	public static void getItem(String path, int reward, int hundreds, int tens, int ones, int coins, int multi){
 		int lootNum;
 		String line = "";
-		if(hundreds == 0 && tens == 0 && ones == 0){
-			lootNum = 1000;
-		}else{
-			lootNum = (hundreds*100)+(tens*10)+(ones);
+		String type = "";
+		boolean item = false;
+		double multi2 = 1;
+		
+		if(reward == 1){		//Copper
+			type = "Copper";
+		}else if(reward == 2){	//Silver
+			type = "Silver";
+		}else if(reward == 3){	//Gold
+			type = "Gold";
+		}else if(reward == 4){	//Platinum
+			type = "Platinum";
+			multi2 = .5;
+		}else if(reward == 5){	//Item + Copper
+			type = "Copper";
+			item = true;
+		}else if(reward == 6){	//Item + Silver
+			type = "Silver";
+			item = true;
+		}else if(reward == 7){	//Item + Gold
+			type = "Gold";
+			item = true;
+		}else if(reward == 8){	//Item + Platinum
+			type = "Platinum";
+			multi2 = .5;
+			item = true;
+		}else if(reward == 9){	//Item
+			item = true;
+			coins = 0;
+		}else if(reward == 10){	//Item
+			item = true;
+			coins = 0;
+		}else if(reward == 11){	//Nothing
+			coins = 0;
+		}else if(reward == 12){	//Nothing
+			coins = 0;
 		}
-
-		try{
-			BufferedReader reader = new BufferedReader(new FileReader(path));
-			
-			for(int i = 1; i<lootNum; ++i){
-				reader.readLine();
+		
+		if(item){
+			if(hundreds == 0 && tens == 0 && ones == 0){
+				lootNum = 1000;
+			}else{
+				lootNum = (hundreds*100)+(tens*10)+(ones);
 			}
-			
-			line = reader.readLine();
-			reader.close();
-			
-		}catch (Exception e){
-			JOptionPane.showMessageDialog(null, e);
+			try{
+				BufferedReader reader = new BufferedReader(new FileReader(path));
+				for(int i = 1; i<lootNum; ++i){
+					reader.readLine();
+				}
+				line = reader.readLine();
+				reader.close();
+			}catch (Exception e){
+				JOptionPane.showMessageDialog(null, e);
+			}
 		}
-		JOptionPane.showMessageDialog(null, line);
 		
-		//Do the display in this method. Just a really big JOptionPane.showMessageDialog ?
-		//	-Potential issue: long text does NOT wrap...
+		//This display is ugly right now, but soon I'll make a custom popup.
+		JOptionPane.showMessageDialog(null, "Coins: "+((int)(coins*multi*multi2))+" "+type+"\n\nItem:\n"+line);
 		
-		//The file was fucked up so they're going to remake it.
-		
-		//You should add a menu item "about" that explains the loot table requirements and the way the fields work.
 	}
-
 }
