@@ -1,5 +1,6 @@
 package initiativeDnD;
 
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -26,6 +27,8 @@ public class GUI extends JFrame{
 	private JMenu file;
 	private JMenuItem save;
 	private JMenuItem load;
+	private JMenu window;
+	private JMenuItem textSize;
 	
 	private JFileChooser chooser;
 	
@@ -49,6 +52,7 @@ public class GUI extends JFrame{
  */
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
+		
 		file = new JMenu("File");
 		menuBar.add(file);
 		save = new JMenuItem("Save");
@@ -56,12 +60,17 @@ public class GUI extends JFrame{
 		load = new JMenuItem("Load");
 		file.add(load);
 		
+		window = new JMenu("Window");
+		menuBar.add(window);
+		textSize = new JMenuItem("Text size");
+		window.add(textSize);
+		
 		chooser = new JFileChooser();
 		
 /*----------------------------------
  * 			Display stuff
  */
-		display = new JTextArea(30, 30);
+		display = new JTextArea(22, 30);
 		display.setText("<Mob info will appear here>");
 		display.setEditable(false);
 		c.gridx = 0;
@@ -110,6 +119,8 @@ public class GUI extends JFrame{
 /*---------------------------------
  * event handlers and action listeners
  */
+		getRootPane().setDefaultButton(next);
+		
 		EventHandler handler = new EventHandler();
 		add.addActionListener(handler);
 		damage.addActionListener(handler);
@@ -118,6 +129,7 @@ public class GUI extends JFrame{
 		
 		save.addActionListener(handler);
 		load.addActionListener(handler);
+		textSize.addActionListener(handler);
 	}
 	private class EventHandler implements ActionListener{
 		public void actionPerformed(ActionEvent event){
@@ -264,6 +276,13 @@ public class GUI extends JFrame{
 					}catch(Exception e) {
 						JOptionPane.showMessageDialog(null, e);
 					}
+				}
+			}else if(event.getSource()==textSize){
+				try{
+					display.setFont(new Font("Calibri", Font.PLAIN, Integer.parseInt(JOptionPane.showInputDialog("Enter text size: "))));
+					pack();
+				}catch(Exception e){
+					JOptionPane.showMessageDialog(null, "Improper input");
 				}
 			}
 		}
