@@ -24,11 +24,17 @@ public class GUI extends JFrame{
 	private Mob currentMob = null;
 	
 	private JMenuBar menuBar;
+	
 	private JMenu file;
 	private JMenuItem save;
 	private JMenuItem load;
+	
 	private JMenu window;
 	private JMenuItem textSize;
+	private JMenu textStyle;
+	private JMenuItem plain;
+	private JMenuItem bold;
+	private JMenuItem italic;
 	
 	private JFileChooser chooser;
 	
@@ -41,11 +47,14 @@ public class GUI extends JFrame{
 	
 	private JScrollPane scrollPane;
 	
+	private Font theFont;
+	
 	public GUI(){
 		super("Initiative Tracker");
 		setLayout(new GridBagLayout());
 		GridBagConstraints c=new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
+		theFont = new Font("Calibri", Font.PLAIN, 12);
 		
 /*----------------------------------
  * 			Menu Bar
@@ -62,8 +71,16 @@ public class GUI extends JFrame{
 		
 		window = new JMenu("Window");
 		menuBar.add(window);
-		textSize = new JMenuItem("Text size");
+		textSize = new JMenuItem("Text Size");
 		window.add(textSize);
+		textStyle = new JMenu("Text Style");
+		window.add(textStyle);
+		plain = new JMenuItem("Plain");
+		textStyle.add(plain);
+		bold = new JMenuItem("Bold");
+		textStyle.add(bold);
+		italic = new JMenuItem("Italic");
+		textStyle.add(italic);
 		
 		chooser = new JFileChooser();
 		
@@ -73,6 +90,7 @@ public class GUI extends JFrame{
 		display = new JTextArea(22, 30);
 		display.setText("<Mob info will appear here>");
 		display.setEditable(false);
+		display.setFont(theFont);
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 3;
@@ -130,6 +148,9 @@ public class GUI extends JFrame{
 		save.addActionListener(handler);
 		load.addActionListener(handler);
 		textSize.addActionListener(handler);
+		plain.addActionListener(handler);
+		bold.addActionListener(handler);
+		italic.addActionListener(handler);
 	}
 	private class EventHandler implements ActionListener{
 		public void actionPerformed(ActionEvent event){
@@ -279,11 +300,21 @@ public class GUI extends JFrame{
 				}
 			}else if(event.getSource()==textSize){
 				try{
-					display.setFont(new Font("Calibri", Font.PLAIN, Integer.parseInt(JOptionPane.showInputDialog("Enter text size: "))));
+					theFont = theFont.deriveFont(Float.parseFloat(JOptionPane.showInputDialog("Enter text size: ")));
+					display.setFont(theFont);
 					pack();
 				}catch(Exception e){
 					JOptionPane.showMessageDialog(null, "Improper input");
 				}
+			}else if(event.getSource()==plain){
+				theFont = theFont.deriveFont(Font.PLAIN);
+				display.setFont(theFont);
+			}else if(event.getSource()==bold){
+				theFont = theFont.deriveFont(Font.BOLD);
+				display.setFont(theFont);
+			}else if(event.getSource()==italic){
+				theFont = theFont.deriveFont(Font.ITALIC);
+				display.setFont(theFont);
 			}
 		}
 	}
