@@ -1,8 +1,10 @@
-# Game-tracker v1.3a
+# Game-tracker v1.3b
 This will be a modified version of the DnD initiative tracker that I put on Haxme. It will include tracking for additional RPGs and other games such as MTG
 
 ----------------
 Changelog:
+
+1.3b: To the initiative tracker: Added the Window JMenu, and the Text Size option within it. Changed the default text area size, and changed the window size to pack. This allows automatic window scaling when changing text size.
 
 1.3a: Added save & load options to the initiative tracker. DMs may now save in the middle of an encounter (at the top of initiative) and load it back up later. DMs may also add all mobs to a planned future encounter ahead of time to be loaded when the players get to it. Added scrollbar to the initiative text field for large encounters. Minor optimizations and changes were also made in the loot table package.
 
