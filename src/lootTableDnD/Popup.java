@@ -1,5 +1,6 @@
 package lootTableDnD;
 
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -8,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 
 @SuppressWarnings("serial")
@@ -37,20 +39,37 @@ public class Popup extends JFrame{
 	private JLabel		authorLabel;
 	private JTextField	authorField;
 	
-	//Add a Font ?
-	
+	private Font theFont;
 	public Popup(String coinsLine, String itemLine){
 		super("Your loot");
 		setLayout(new GridBagLayout());
 		GridBagConstraints c=new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
 		
-		String itemArr[] = itemLine.split(","); //This won't work.
+		theFont = new Font("Calibri", Font.PLAIN, 16);
+		UIManager.put("TextField.font", theFont);
+		UIManager.put("TextArea.font", theFont);
+		theFont = new Font("Calibri", Font.BOLD, 16);
+		UIManager.put("Label.font", theFont);
+		
+		int first = 1, second;
+		while(true){
+			first = itemLine.indexOf("\"", first);
+			second = itemLine.indexOf("\"", first+1);
+			if(first < 0 || second < 0){
+				break;
+			}else{
+				itemLine = itemLine.substring(0, first) + itemLine.substring(first, second).replaceAll(",", "") + itemLine.substring(second, itemLine.length());
+				first = second;
+			}
+		}
+		String itemArr[] = itemLine.replaceAll("\"", "").split(",");
 		
 		try{
 			Integer.parseInt(coinsLine.replaceAll("\\s",""));
 		}catch(Exception e){
 			coinsLabel = new JLabel("Coins:  ");
+			coinsLabel.setFont(theFont);
 			c.gridx = 0;
 			c.gridy = 0;
 			c.insets = new Insets(10,10,60,10);
@@ -80,6 +99,7 @@ public class Popup extends JFrame{
 		descriptionArea = new JTextArea(8,20);
 		descriptionArea.setLineWrap(true);
 		descriptionArea.setText(itemArr[1]);
+		descriptionArea.setEditable(false);
 		c.gridx = 0;
 		c.gridy = 3;
 		c.gridwidth = 2;
@@ -135,6 +155,7 @@ public class Popup extends JFrame{
 		propertiesArea = new JTextArea(6, 20);
 		propertiesArea.setLineWrap(true);
 		propertiesArea.setText(itemArr[6]);
+		propertiesArea.setEditable(false);
 		c.gridx = 0;
 		c.gridy = 9;
 		c.gridwidth = 2;
@@ -150,13 +171,13 @@ public class Popup extends JFrame{
 		requirementsArea = new JTextArea(4, 20);
 		requirementsArea.setLineWrap(true);
 		requirementsArea.setText(itemArr[7]);
+		requirementsArea.setEditable(false);
 		c.gridx = 0;
 		c.gridy = 11;
 		c.gridwidth = 2;
 		add(requirementsArea, c);
 		requirementsScroll = new JScrollPane(requirementsArea);
 		add(requirementsScroll, c);
-		
 		
 		authorLabel = new JLabel("Author: ");
 		c.insets = new Insets(10,10,4,10);
@@ -169,5 +190,7 @@ public class Popup extends JFrame{
 		c.gridx = 1;
 		c.gridy = 12;
 		add(authorField, c);
+		
+		pack();
 	}
 }
