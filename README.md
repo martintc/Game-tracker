@@ -4,7 +4,7 @@ This will be a modified version of the DnD initiative tracker that I put on Haxm
 ----------------
 Changelog:
 
-2.0: Finished loot module. Fixed the split issue so that everything displays in the correct field. Added the "about" JMenuItem description. Finished both myRolls and randomRolls for both special and generic rules. Changed default font in Popup class. Also fixed an issue in the initiative tracker where users could enter non-Integer initiative values when prompted to reroll due to a tie.
+2.0: Finished loot module. Fixed the split issue so that everything displays in the correct field. Changed the Popup.java class so that it only displays the fields that are necessary. Added the "about" JMenuItem description. Finished both myRolls and randomRolls for both special and generic rules. Changed default font in Popup class. Also fixed an issue in the initiative tracker where users could enter non-Integer initiative values when prompted to reroll due to a tie.
 
 1.5: Added Popup class that serves as a custom display popup for your loot. Currently, it does not properly display things in the correct fields because of a minor issue with the split done on the input string. Also uploaded a sample loot table (note: some lines in the file are defective for some reason, so results are not 100% accurate).
 
