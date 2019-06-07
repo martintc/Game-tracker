@@ -16,12 +16,10 @@ public class Loot {
 			D10		decides coin multiplier
 		*/
 		choice = JOptionPane.showConfirmDialog(null, "Would you like to use the special rules?");
-		if(choice == 0){ //Use special rules
+		if(choice == 0){ 		//Special rules
 			myInterface = new lootTableDnD.GUI(true);
-			myInterface.setSize(250,300);
-		}else if(choice == 1){
+		}else if(choice == 1){	//Generic rules
 			myInterface = new lootTableDnD.GUI(false);
-			myInterface.setSize(200,200); //change
 		}
 		if(choice != 2){
 			myInterface.setVisible(true);
@@ -29,10 +27,9 @@ public class Loot {
 		}
 	}
 	
-	public static void getItem(String path, int reward, int hundreds, int tens, int ones, int coins, int multi){
+	public static void getSpecialItem(String path, int reward, int hundreds, int tens, int ones, int coins, int multi){
 		int lootNum;
-		String line = "";
-		String type = "";
+		String line = "", type = "";
 		boolean item = false;
 		double multi2 = 1;
 		
@@ -90,11 +87,30 @@ public class Loot {
 			}
 			
 			Popup popup = new Popup(((int)(coins*multi*multi2))+" "+type, line);
-			popup.pack();
 			popup.setVisible(true);
-			//popup.setResizable(false);
 		}else{
 			JOptionPane.showMessageDialog(null, "Coins: "+((int)(coins*multi*multi2))+" "+type);
+		}
+	}
+	
+	public static void getGenericItem(String path, int lootNum){
+		String line = "";
+		try{
+			BufferedReader reader = new BufferedReader(new FileReader(path));
+			for(int i = 1; i<lootNum; ++i){
+				reader.readLine();
+				
+			}
+			line = reader.readLine();
+			reader.close();
+		}catch (Exception e){
+			JOptionPane.showMessageDialog(null, e);
+		}
+		if(line == null){
+			JOptionPane.showMessageDialog(null, "There are fewer than "+lootNum+" items in the table.");
+		}else{
+			Popup popup = new Popup("0", line);
+			popup.setVisible(true);
 		}
 	}
 }
