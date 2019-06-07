@@ -1,8 +1,10 @@
-# Game-tracker v1.4
+# Game-tracker v1.5
 This will be a modified version of the DnD initiative tracker that I put on Haxme. It will include tracking for additional RPGs and other games such as MTG
 
 ----------------
 Changelog:
+
+1.5: Added Popup class that serves as a custom display popup for your loot. Currently, it does not properly display things in the correct fields because of a minor issue with the split done on the input string. Also uploaded a sample loot table (note: some lines in the file are defective for some reason, so results are not 100% accurate).
 
 1.4: The GUI class now uses your rolls by default when you press the enter key. It also checks to make sure that all 6 fields are not only integers, but that they are in the proper range. The Loot class now properly displays the correct kind and number of coins in addition to loot.
 
