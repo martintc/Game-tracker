@@ -5,15 +5,15 @@ Loot module:
 
 * Implement all of generic rules
 * Implement random loot for special rules
-* Create custom popup for easy loot viewing
-* Add an "about" menu item that explains the rules and table requirements
+* Fix split issue in Popup class
+* Add font options to Popup class
+* Type out rules and table requirements for the "about" button
 
 Initiative tracker:
 
 * Implement the wiki database with custom monster popups
 * On the monster popups include a button that launches the wiki page in default browser
 * Potential issue with invalid input when prompted to reroll initiative
-
 
 Wiki grabber:
 
