@@ -18,10 +18,10 @@ public class Loot {
 		choice = JOptionPane.showConfirmDialog(null, "Would you like to use the special rules?");
 		if(choice == 0){ 		//Special rules
 			myInterface = new lootTableDnD.GUI(true);
+			myInterface.setVisible(true);
+			myInterface.setResizable(false);
 		}else if(choice == 1){	//Generic rules
 			myInterface = new lootTableDnD.GUI(false);
-		}
-		if(choice != 2){
 			myInterface.setVisible(true);
 			myInterface.setResizable(false);
 		}
