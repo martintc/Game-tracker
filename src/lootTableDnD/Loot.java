@@ -65,9 +65,11 @@ public class Loot {
 			item = true;
 			coins = 0;
 		}else if(reward == 11){	//Nothing
-			coins = 0;
+			JOptionPane.showMessageDialog(null, "Empty");
+			return;
 		}else if(reward == 12){	//Nothing
-			coins = 0;
+			JOptionPane.showMessageDialog(null, "Empty");
+			return;
 		}
 		
 		if(item){
@@ -86,10 +88,13 @@ public class Loot {
 			}catch (Exception e){
 				JOptionPane.showMessageDialog(null, e);
 			}
+			
+			Popup popup = new Popup(((int)(coins*multi*multi2))+" "+type, line);
+			popup.pack();
+			popup.setVisible(true);
+			//popup.setResizable(false);
+		}else{
+			JOptionPane.showMessageDialog(null, "Coins: "+((int)(coins*multi*multi2))+" "+type);
 		}
-		
-		//This display is ugly right now, but soon I'll make a custom popup.
-		JOptionPane.showMessageDialog(null, "Coins: "+((int)(coins*multi*multi2))+" "+type+"\n\nItem:\n"+line);
-		
 	}
 }
