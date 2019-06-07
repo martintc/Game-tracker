@@ -67,6 +67,7 @@ public class Mob {
 		nextMob = theNextMob;
 	}
 	public void insertSelf(Mob current, Mob last){
+		boolean bad;
 		for(int i = 0;; i++){
 			if(this.getInitiative()[i] > current.getInitiative()[i]){
 				if(last == null){
@@ -85,11 +86,30 @@ public class Mob {
 				}
 				break;
 			}else{
+				bad = false;
 				if(i+1 == this.getInitiative().length ){
-					this.addInitiative(Integer.parseInt(JOptionPane.showInputDialog(this.getName() + " must roll again for initiative:")));
+					do{
+						try{
+							this.addInitiative(Integer.parseInt(JOptionPane.showInputDialog(this.getName() + " must roll again for initiative:")));
+						}catch(NumberFormatException e){
+							JOptionPane.showMessageDialog(null, "Initiative value must be a number.");
+							bad = true;
+							continue;
+						}
+						bad = false;
+					}while(bad);
 				}
 				if(i+1 == current.getInitiative().length){
-					current.addInitiative(Integer.parseInt(JOptionPane.showInputDialog(current.getName() + " must roll again for initiative:")));
+					do{
+						try{
+							current.addInitiative(Integer.parseInt(JOptionPane.showInputDialog(current.getName() + " must roll again for initiative:")));
+						}catch(NumberFormatException e){
+							JOptionPane.showMessageDialog(null, "Initiative value must be a number.");
+							bad = true;
+							continue;
+						}
+						bad = false;
+					}while(bad);
 				}
 			}
 		}
