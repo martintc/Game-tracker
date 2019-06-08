@@ -63,7 +63,7 @@ public class Popup extends JFrame{
 				first = second;
 			}
 		}
-		String itemArr[] = (itemLine+",,,,,,,").replaceAll("\"", "").split(","); //I add commas to avoid ArrayIndexOutOfBoundsException later.
+		String itemArr[] = (itemLine+",,,,,,,,").replaceAll("\"", "").split(","); //I add commas to avoid ArrayIndexOutOfBoundsException later.
 		
 		try{
 			Integer.parseInt(coinsLine.replaceAll("\\s",""));
