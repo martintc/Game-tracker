@@ -52,7 +52,7 @@ public class Popup extends JFrame{
 		theFont = new Font("Calibri", Font.BOLD, 16);
 		UIManager.put("Label.font", theFont);
 		
-		int first = 1, second;
+		int first = 0, second;
 		while(true){
 			first = itemLine.indexOf("\"", first);
 			second = itemLine.indexOf("\"", first+1);
