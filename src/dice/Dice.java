@@ -26,5 +26,8 @@ Okay, so what is even the vision here?
 * Need to be able to name them/rename them.
 * SUGGESTED that they include a header? Like "Goblin: Punch"
 	- Display them alphabetically
+	
+	
+* Dice.run() should attempt to load a default DB if there is one in the same directory.
 
  */
