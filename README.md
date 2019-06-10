@@ -1,8 +1,10 @@
-# Game-tracker v2.0
+# Game-tracker v2.1
 This will be a modified version of the DnD initiative tracker that I put on Haxme. It will include tracking for additional RPGs and other games such as MTG
 
 ----------------
 Changelog:
+
+2.1: Started work on a Dice Manager module. *Nothing is implemented yet*. This will allow people to make databases with custom saved dice combinations (such as 2d6+2) that will automatically do the roll for you, as well as graph the probability distribution for that combo. Ideally, this module will also allow you to group combos together for complex actions, and allow naming each combo within the meta-combo (eg. "hit" = 1d20+4, "dmg" = 2d6+2)
 
 2.0: Finished loot module. Fixed the split issue so that everything displays in the correct field. Changed the Popup.java class so that it only displays the fields that are necessary. Added the "about" JMenuItem description. Finished both myRolls and randomRolls for both special and generic rules. Changed default font in Popup class. Also fixed an issue in the initiative tracker where users could enter non-Integer initiative values when prompted to reroll due to a tie.
 
