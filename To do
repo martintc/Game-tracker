@@ -3,10 +3,11 @@ To do list:
 Initiative tracker:
 * Implement the wiki database with custom monster popups
 * On the monster popups include a button that launches the wiki page in default browser
+
 Wiki grabber:
-* Fix issues with row 1
-* Fix issues with row 3
+* Remove special characters from entries (eg "&#32;")
 * Continue working through rows. Start row 5
+
 
 Dice:
 * Do the stuff in Dice.java
