@@ -26,7 +26,7 @@ Changelog:
 
 0.9: Original version by Freak posted on Haxme that only included the initiative tracker
 
-# Wiki Grabber v0.4
+# Wiki Grabber v0.5
 This will pull the stats for every single 5e monster on dandwiki (https://www.dandwiki.com/wiki/5e_Monsters) and puts the information into individual .csv files for a comprehensive database.
 
 Model .csv file is uploaded as 0000.csv The links in the table are just notes for certain entries that have those characteristics.
@@ -35,6 +35,8 @@ We do not own anything on dandwiki. dandwiki should not contain any copyrighted 
 
 ----------------
 Changelog:
+
+0.5: Rows 1-8 should now all work, although lines 5 and 6 *might* not work for some unknown entries in cases where they are irregularly formatted (e.g. "vulnerabilities" shortened to "vulns"). This is complicated due to the fact that entries typically link to "/wiki/5e_SRD:Damage_Resistance_and_Vulnerability" prior to these items, therefore if you merely check for "vuln" or "resist" in the regex, then the program may put the same damage type as both a resistance *and* vulnerability. As stated, this is currently not an issue, but issues may arise if some entries are irregularly formatted (which is unconfirmed).
 
 0.4: Issues with row 3 and 1 should be solved. Edited some of the other rows so they should be more robust. Rows 1-4 should work.
 
