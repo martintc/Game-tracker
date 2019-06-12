@@ -5,7 +5,7 @@ my($ua, $response, $mainContents, $thisLink, $thisContent, $tempString);
 
 $ua = LWP::UserAgent->new(
 	protocols_allowed 	=> ['http', 'https'],
-	timeout 			=> 10,
+	timeout 		=> 10,
 	agent 			=> "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0", #Necessary otherwise 403 forbidden.
 );
 $response = $ua->get('https://www.dandwiki.com/wiki/5e_Monsters');
@@ -24,40 +24,40 @@ while($mainContents =~ /<a href=\"(.*?)\"/g){
 			if($thisLink =~ /wiki\/(.*?)_\(5e_Creature\)/){
 				open(DATA, ">$1.csv");
 				#-----------------------------------------------------------------------------------------------------------------------
-				if($thisContent =~/<p><i>(.*?)<\/i>/){																	#Size/Alignment
+				if($thisContent =~/<p><i>(.*?)<\/i>/){											#Size/Alignment
 					$tempString = $1;
 					$tempString =~s/<(.*?)>//g;
 					print DATA "\"".$tempString."\",";
 				}else{
 					print DATA ",";
 				}
-				if($thisContent =~/Armor Class<\/b>(.*?)(\d+)(\s?|\S?)/){print DATA "\"".$2."\",";}else{print DATA ",";}				#AC
-				if($thisContent =~/Hit Points<\/a><\/b>(.*?)(\d+)(\s?|\S?)/){print DATA "\"".$2."\",";}else{print DATA ",";}			#HP
-				if($thisContent =~/Speed<\/a><\/b>(.*?)(\n|<)/){print DATA "\"".$1."\",\n";}else{print DATA ",\n";}					#Speed
+				if($thisContent =~/Armor Class<\/b>(.*?)(\d+)(\s?|\S?)/){print DATA "\"".$2."\",";}else{print DATA ",";}		#AC
+				if($thisContent =~/Hit Points<\/a><\/b>(.*?)(\d+)(\s?|\S?)/){print DATA "\"".$2."\",";}else{print DATA ",";}		#HP
+				if($thisContent =~/Speed<\/a><\/b>(.*?)(\n|<)/){print DATA "\"".$1."\",\n";}else{print DATA ",\n";}			#Speed
 				#-----------------------------------------------------------------------------------------------------------------------
-				while($thisContent =~/\n<td>(.*?)\((.*?)\)/g){print DATA "\"".$1."\",";}										#Ability scores
+				while($thisContent =~/\n<td>(.*?)\((.*?)\)/g){print DATA "\"".$1."\",";}						#Ability scores
 				print DATA "\n";
 				#-----------------------------------------------------------------------------------------------------------------------
-				if($thisContent =~/Strength(.*?)<\/a> \+( \d+|\d+)/){print DATA "\"".$2."\",";}									#Str save	
+				if($thisContent =~/Strength(.*?)<\/a> \+( \d+|\d+)/){print DATA "\"".$2."\",";}						#Str save	
 				elsif($thisContent =~/Saving Throws<\/b>(.*?)(Str|Strength)(\s*?)\+(\s*?)(\d+)/){print DATA "\"".$5."\",";}
 				else{print DATA ",";}
-				if($thisContent =~/Dexterity(.*?)<\/a> \+( \d+|\d+)/){print DATA "\"".$2."\",";}								#Dex save
+				if($thisContent =~/Dexterity(.*?)<\/a> \+( \d+|\d+)/){print DATA "\"".$2."\",";}					#Dex save
 				elsif($thisContent =~/Saving Throws<\/b>(.*?)(Dex|Dexterity)(\s*?)\+(\s*?)(\d+)/){print DATA "\"".$5."\",";}
 				else{print DATA ",";}
-				if($thisContent =~/Constitution(.*?)<\/a> \+( \d+|\d+)/){print DATA "\"".$2."\",";}								#Con save
+				if($thisContent =~/Constitution(.*?)<\/a> \+( \d+|\d+)/){print DATA "\"".$2."\",";}					#Con save
 				elsif($thisContent =~/Saving Throws<\/b>(.*?)(Con|Constitution)(\s*?)\+(\s*?)(\d+)/){print DATA "\"".$5."\",";}
 				else{print DATA ",";}
-				if($thisContent =~/Intelligence(.*?)<\/a> \+( \d+|\d+)/){print DATA "\"".$2."\",";}								#Int save
+				if($thisContent =~/Intelligence(.*?)<\/a> \+( \d+|\d+)/){print DATA "\"".$2."\",";}					#Int save
 				elsif($thisContent =~/Saving Throws<\/b>(.*?)(Int|Intelligence)(\s*?)\+(\s*?)(\d+)/){print DATA "\"".$5."\",";}
 				else{print DATA ",";}
-				if($thisContent =~/Wisdom(.*?)<\/a> \+( \d+|\d+)/){print DATA "\"".$2."\",";}									#Wis save
+				if($thisContent =~/Wisdom(.*?)<\/a> \+( \d+|\d+)/){print DATA "\"".$2."\",";}						#Wis save
 				elsif($thisContent =~/Saving Throws<\/b>(.*?)(Wis|Wisdom)(\s*?)\+(\s*?)(\d+)/){print DATA "\"".$5."\",";}
 				else{print DATA ",";}
-				if($thisContent =~/Charisma(.*?)<\/a> \+( \d+|\d+)/){print DATA "\"".$2."\",\n";}								#Cha save
+				if($thisContent =~/Charisma(.*?)<\/a> \+( \d+|\d+)/){print DATA "\"".$2."\",\n";}					#Cha save
 				elsif($thisContent =~/Saving Throws<\/b>(.*?)(Cha|Charisma)(\s*?)\+(\s*?)(\d+)/){print DATA "\"".$5."\",\n";}
 				else{print DATA ",\n";}
 				#-----------------------------------------------------------------------------------------------------------------------
-				if($thisContent =~/>(\s*?)Skills(.*?)((\s*?)|(.?))<b>/){													#Skills
+				if($thisContent =~/>(\s*?)Skills(.*?)((\s*?)|(.?))<b>/){								#Skills
 					$tempString = $2;
 					$tempString =~s/<(.*?)>//g;
 					$tempString =~s/<(.*)//g;
@@ -67,13 +67,13 @@ while($mainContents =~ /<a href=\"(.*?)\"/g){
 					print DATA ",\n";
 				}
 				#-----------------------------------------------------------------------------------------------------------------------
-				if($thisContent =~/Vulnerabilities(\s*?)<\/a><\/b>(.*?)<br/){print DATA "\"".$2."\",\n";}else{print DATA ",\n";}		#Damage Vulnerabilities
+				if($thisContent =~/Vulnerabilities(\s*?)<\/a><\/b>(.*?)<br/){print DATA "\"".$2."\",\n";}else{print DATA ",\n";}	#Damage Vulnerabilities
 				#-----------------------------------------------------------------------------------------------------------------------
-				if($thisContent =~/Resistances(\s*?)<\/a><\/b>(.*?)<br/){print DATA "\"".$2."\",\n";}else{print DATA ",\n";}			#Damage Resistances
+				if($thisContent =~/Resistances(\s*?)<\/a><\/b>(.*?)<br/){print DATA "\"".$2."\",\n";}else{print DATA ",\n";}		#Damage Resistances
 				#-----------------------------------------------------------------------------------------------------------------------
-				if($thisContent =~/(Dmg |Damage )Imm(.*?)<\/b>(.*?)<br/){print DATA "\"".$3."\",\n";}else{print DATA ",\n";}			#Damage Immunities
+				if($thisContent =~/(Dmg |Damage )Imm(.*?)<\/b>(.*?)<br/){print DATA "\"".$3."\",\n";}else{print DATA ",\n";}		#Damage Immunities
 				#-----------------------------------------------------------------------------------------------------------------------
-				if($thisContent =~/(Con |Condition )Imm(.*?)<\/b>(.*?)<br/){												#Condition Immunities
+				if($thisContent =~/(Con |Condition )Imm(.*?)<\/b>(.*?)<br/){								#Condition Immunities
 					$tempString = $3;
 					$tempString =~s/<(.*?)>//g;
 					print DATA "\"".$tempString."\",\n"
