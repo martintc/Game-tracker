@@ -26,7 +26,7 @@ Changelog:
 
 0.9: Original version by Freak posted on Haxme that only included the initiative tracker
 
-# Wiki Grabber v0.3
+# Wiki Grabber v0.4
 This will pull the stats for every single 5e monster on dandwiki (https://www.dandwiki.com/wiki/5e_Monsters) and puts the information into individual .csv files for a comprehensive database.
 
 Model .csv file is uploaded as 0000.csv The links in the table are just notes for certain entries that have those characteristics.
@@ -35,6 +35,8 @@ We do not own anything on dandwiki. dandwiki should not contain any copyrighted 
 
 ----------------
 Changelog:
+
+0.4: Issues with row 3 and 1 should be solved. Edited some of the other rows so they should be more robust. Rows 1-4 should work.
 
 0.3: Row 4 should now work for all entries.  
 For entries such as Adam, row 3 is known NOT to work.  
