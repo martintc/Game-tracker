@@ -24,21 +24,39 @@ while($mainContents =~ /\<a href=\"(.*?)\"/g){
 			if($thisLink =~ /wiki\/(.*?)_\(5e_Creature\)/){
 				open(DATA, ">$1.csv");
 				#-----------------------------------------------------------------------------------------------------------------------
-				if($thisContent =~/\<p\>\<i\>(.*?)\<\/i\>/){print DATA "\"".$1."\",";}else{print DATA ",";}					#Size/Alignment
-				if($thisContent =~/Armor Class\<\/b\> (.*?)\(/){print DATA "\"".$1."\",";}else{print DATA ",";}					#AC
-				if($thisContent =~/Hit Points\<\/a\>\<\/b\> (.*?)\(/){print DATA "\"".$1."\",";}else{print DATA ",";}				#HP
-				if($thisContent =~/Speed\<\/a\>\<\/b\> (.*?)\n/){print DATA "\"".$1."\",\n";}else{print DATA ",\n";}				#speed
+				if($thisContent =~/\<p\>\<i\>(.*?)\<\/i\>/){										#Size/Alignment
+					$tempString = $1;
+					$tempString =~s/\<(.*?)\>//g;
+					print DATA "\"".$tempString."\",";
+				}else{
+					print DATA ",";
+				}						
+				if($thisContent =~/Armor Class\<\/b\>(.*?)(\d+)(\s?|\S?)/){print DATA "\"".$2."\",";}else{print DATA ",";}		#AC
+				if($thisContent =~/Hit Points\<\/a\>\<\/b\>(.*?)(\d+)(\s?|\S?)/){print DATA "\"".$2."\",";}else{print DATA ",";}	#HP
+				if($thisContent =~/Speed\<\/a\>\<\/b\> (.*?)(\n|\<)/){print DATA "\"".$1."\",\n";}else{print DATA ",\n";}		#speed
 				#-----------------------------------------------------------------------------------------------------------------------
-				while($thisContent =~/\n\<td\> (.*?) \((.*?)\)/g){print DATA "\"".$1."\",";}							#ability scores
+				while($thisContent =~/\n\<td\> (.*?) \((.*?)\)/g){print DATA "\"".$1."\",";}						#ability scores
 				#-----------------------------------------------------------------------------------------------------------------------
-				if($thisContent =~/Strength(.*?)\<\/a\> \+( \d*|\d*)/){print DATA "\n\"".$2."\",";}else{print DATA "\n,";}			#Str save	#They don't work for Adam...
-				if($thisContent =~/Dexterity(.*?)\<\/a\> \+( \d*|\d*)/){print DATA "\"".$2."\",";}else{print DATA ",";}				#Dex save	#Either nest the whole thing in a (|)
-				if($thisContent =~/Constitution(.*?)\<\/a\> \+( \d*|\d*)/){print DATA "\"".$2."\",";}else{print DATA ",";}			#Con save	#or elsif it.
-				if($thisContent =~/Intelligence(.*?)\<\/a\> \+( \d*|\d*)/){print DATA "\"".$2."\",";}else{print DATA ",";}			#Int save
-				if($thisContent =~/Wisdom(.*?)\<\/a\> \+( \d*|\d*)/){print DATA "\"".$2."\",";}else{print DATA ",";}				#Wis save
-				if($thisContent =~/Charisma(.*?)\<\/a\> \+( \d*|\d*)/){print DATA "\"".$2."\",\n";}else{print DATA ",\n";}			#Cha save
+				if($thisContent =~/Strength(.*?)\<\/a\> \+( \d+|\d+)/){print DATA "\n\"".$2."\",";}					#Str save	
+				elsif($thisContent =~/Saving Throws\<\/b\>(.*?)(Str|Strength)(\s*?)\+(\s*?)(\d+)/){print DATA "\n\"".$5."\",";}
+				else{print DATA "\n,";}
+				if($thisContent =~/Dexterity(.*?)\<\/a\> \+( \d+|\d+)/){print DATA "\"".$2."\",";}					#Dex save
+				elsif($thisContent =~/Saving Throws\<\/b\>(.*?)(Dex|Dexterity)(\s*?)\+(\s*?)(\d+)/){print DATA "\"".$5."\",";}
+				else{print DATA ",";}
+				if($thisContent =~/Constitution(.*?)\<\/a\> \+( \d+|\d+)/){print DATA "\"".$2."\",";}					#Con save
+				elsif($thisContent =~/Saving Throws\<\/b\>(.*?)(Con|Constitution)(\s*?)\+(\s*?)(\d+)/){print DATA "\"".$5."\",";}
+				else{print DATA ",";}
+				if($thisContent =~/Intelligence(.*?)\<\/a\> \+( \d+|\d+)/){print DATA "\"".$2."\",";}					#Int save
+				elsif($thisContent =~/Saving Throws\<\/b\>(.*?)(Int|Intelligence)(\s*?)\+(\s*?)(\d+)/){print DATA "\"".$5."\",";}
+				else{print DATA ",";}
+				if($thisContent =~/Wisdom(.*?)\<\/a\> \+( \d+|\d+)/){print DATA "\"".$2."\",";}						#Wis save
+				elsif($thisContent =~/Saving Throws\<\/b\>(.*?)(Wis|Wisdom)(\s*?)\+(\s*?)(\d+)/){print DATA "\"".$5."\",";}
+				else{print DATA ",";}
+				if($thisContent =~/Charisma(.*?)\<\/a\> \+( \d+|\d+)/){print DATA "\"".$2."\",\n";}					#Cha save
+				elsif($thisContent =~/Saving Throws\<\/b\>(.*?)(Cha|Charisma)(\s*?)\+(\s*?)(\d+)/){print DATA "\"".$5."\",";}
+				else{print DATA ",\n";}
 				#-----------------------------------------------------------------------------------------------------------------------
-				if($thisContent =~/\>(\s*?)Skills(.*?)((\s*?)|(.?))\<b\>/){
+				if($thisContent =~/\>(\s*?)Skills(.*?)((\s*?)|(.?))\<b\>/){								#Skills
 					$tempString = $2;
 					$tempString =~s/\<(.*?)\>//g;
 					$tempString =~s/\<(.*)//g;
@@ -47,8 +65,12 @@ while($mainContents =~ /\<a href=\"(.*?)\"/g){
 				}else{
 					print DATA ",\n";
 				}
-
-
+				#-----------------------------------------------------------------------------------------------------------------------
+				
+				
+				
+				
+				
 				#-----------------------------------------------------------------------------------------------------------------------
 				close(DATA);
 				last; #comment out to grab many at once.
