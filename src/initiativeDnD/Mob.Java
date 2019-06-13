@@ -1,5 +1,7 @@
 package initiativeDnD;
 
+import java.util.Arrays;
+
 import javax.swing.JOptionPane;
 
 public class Mob {
@@ -53,12 +55,8 @@ public class Mob {
 		}
 	}
 	public void addInitiative(int num){
-		int temp[] = initiative;
-		initiative = new int[temp.length + 1];
-		for(int i = 0; i<temp.length; i++){
-			initiative[i] = temp[i];
-		}
-		initiative[initiative.length - 1] = num;
+		initiative = Arrays.copyOf(initiative, initiative.length+1);
+		initiative[initiative.length-1] = num;
 	}
 	public void setName(String theName){
 		name = theName;
