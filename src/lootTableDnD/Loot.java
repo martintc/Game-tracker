@@ -16,36 +16,101 @@ public class Loot {
 			D10		decides coin multiplier
 		*/
 		choice = JOptionPane.showConfirmDialog(null, "Would you like to use the special rules?");
-		if(choice == 0){ //Use special rules
+		if(choice == 0){ 		//Special rules
 			myInterface = new lootTableDnD.GUI(true);
-			myInterface.setSize(250,300);
-		}else if(choice == 1){
+			myInterface.setVisible(true);
+			myInterface.setResizable(false);
+		}else if(choice == 1){	//Generic rules
 			myInterface = new lootTableDnD.GUI(false);
-			myInterface.setSize(100,100); //change
-		}
-		if(choice != 2){
 			myInterface.setVisible(true);
 			myInterface.setResizable(false);
 		}
 	}
 	
-	public void getItem(int itemNum){
-		String[] item;
-		try{
-			BufferedReader reader = new BufferedReader(new FileReader("loot.csv")); // Change so they can choose.
-			for(int i = 1; i<itemNum; ++i){
-				reader.readLine();
-			}
-			item = reader.readLine().split(";");
-			
-			
-			
-		}catch(Exception e){
-			e.printStackTrace();
+	public static void getSpecialItem(String path, int reward, int hundreds, int tens, int ones, int coins, int multi){
+		int lootNum;
+		String line = "", type = "";
+		boolean item = false;
+		double multi2 = 1;
+		
+		if(reward == 1){		//Copper
+			type = "Copper";
+		}else if(reward == 2){	//Silver
+			type = "Silver";
+		}else if(reward == 3){	//Gold
+			type = "Gold";
+		}else if(reward == 4){	//Platinum
+			type = "Platinum";
+			multi2 = .5;
+		}else if(reward == 5){	//Item + Copper
+			type = "Copper";
+			item = true;
+		}else if(reward == 6){	//Item + Silver
+			type = "Silver";
+			item = true;
+		}else if(reward == 7){	//Item + Gold
+			type = "Gold";
+			item = true;
+		}else if(reward == 8){	//Item + Platinum
+			type = "Platinum";
+			multi2 = .5;
+			item = true;
+		}else if(reward == 9){	//Item
+			item = true;
+			coins = 0;
+		}else if(reward == 10){	//Item
+			item = true;
+			coins = 0;
+		}else if(reward == 11){	//Nothing
+			JOptionPane.showMessageDialog(null, "Empty");
+			return;
+		}else if(reward == 12){	//Nothing
+			JOptionPane.showMessageDialog(null, "Empty");
+			return;
 		}
 		
-		//Do the display in this method. Just a really big JOptionPane.showMessageDialog ?
-		//	-Potential issue: long text does NOT wrap...
+		if(item){
+			if(hundreds == 0 && tens == 0 && ones == 0){
+				lootNum = 1000;
+			}else{
+				lootNum = (hundreds*100)+(tens*10)+(ones);
+			}
+			try{
+				BufferedReader reader = new BufferedReader(new FileReader(path));
+				for(int i = 1; i<lootNum; ++i){
+					reader.readLine();
+				}
+				line = reader.readLine();
+				reader.close();
+			}catch (Exception e){
+				JOptionPane.showMessageDialog(null, e);
+			}
+			
+			Popup popup = new Popup(((int)(coins*multi*multi2))+" "+type, line);
+			popup.setVisible(true);
+		}else{
+			JOptionPane.showMessageDialog(null, "Coins: "+((int)(coins*multi*multi2))+" "+type);
+		}
 	}
-
+	
+	public static void getGenericItem(String path, int lootNum){
+		String line = "";
+		try{
+			BufferedReader reader = new BufferedReader(new FileReader(path));
+			for(int i = 1; i<lootNum; ++i){
+				reader.readLine();
+				
+			}
+			line = reader.readLine();
+			reader.close();
+		}catch (Exception e){
+			JOptionPane.showMessageDialog(null, e);
+		}
+		if(line == null){
+			JOptionPane.showMessageDialog(null, "There are fewer than "+lootNum+" items in the table.");
+		}else{
+			Popup popup = new Popup("0", line);
+			popup.setVisible(true);
+		}
+	}
 }

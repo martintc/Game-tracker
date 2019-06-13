@@ -1,5 +1,6 @@
 import initiativeDnD.DnD;
 import lootTableDnD.Loot;
+import dice.Dice;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -67,6 +68,7 @@ class Main {
 		ArrayList<String> games = new ArrayList<>();
 		games.add("DnD Initiative");
 		games.add("DnD Loot");
+		games.add("Dice Manager");
 
 		return games;
 	}
@@ -81,9 +83,9 @@ class Main {
 				DnD.run();	
 			}else if(choice.equals("DnD Loot")){
 				Loot.run();
+			}else if(choice.equals("Dice Manager")){
+				Dice.run();
 			}
 		}	
-	
 	}
-
 }

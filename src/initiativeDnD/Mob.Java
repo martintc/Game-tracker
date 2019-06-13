@@ -1,10 +1,12 @@
 package initiativeDnD;
 
+import java.util.Arrays;
+
 import javax.swing.JOptionPane;
 
 public class Mob {
 	private int hp;
-	private String name;
+	private String name = null;
 	private int initiative[] = {};
 	private int dmgTaken = 0;
 	private Mob nextMob = null;
@@ -53,12 +55,8 @@ public class Mob {
 		}
 	}
 	public void addInitiative(int num){
-		int temp[] = initiative;
-		initiative = new int[temp.length + 1];
-		for(int i = 0; i<temp.length; i++){
-			initiative[i] = temp[i];
-		}
-		initiative[initiative.length - 1] = num;
+		initiative = Arrays.copyOf(initiative, initiative.length+1);
+		initiative[initiative.length-1] = num;
 	}
 	public void setName(String theName){
 		name = theName;
@@ -67,6 +65,7 @@ public class Mob {
 		nextMob = theNextMob;
 	}
 	public void insertSelf(Mob current, Mob last){
+		boolean bad;
 		for(int i = 0;; i++){
 			if(this.getInitiative()[i] > current.getInitiative()[i]){
 				if(last == null){
@@ -85,11 +84,30 @@ public class Mob {
 				}
 				break;
 			}else{
+				bad = false;
 				if(i+1 == this.getInitiative().length ){
-					this.addInitiative(Integer.parseInt(JOptionPane.showInputDialog(this.getName() + " must roll again for initiative:")));
+					do{
+						try{
+							this.addInitiative(Integer.parseInt(JOptionPane.showInputDialog(this.getName() + " must roll again for initiative:")));
+						}catch(NumberFormatException e){
+							JOptionPane.showMessageDialog(null, "Initiative value must be a number.");
+							bad = true;
+							continue;
+						}
+						bad = false;
+					}while(bad);
 				}
 				if(i+1 == current.getInitiative().length){
-					current.addInitiative(Integer.parseInt(JOptionPane.showInputDialog(current.getName() + " must roll again for initiative:")));
+					do{
+						try{
+							current.addInitiative(Integer.parseInt(JOptionPane.showInputDialog(current.getName() + " must roll again for initiative:")));
+						}catch(NumberFormatException e){
+							JOptionPane.showMessageDialog(null, "Initiative value must be a number.");
+							bad = true;
+							continue;
+						}
+						bad = false;
+					}while(bad);
 				}
 			}
 		}

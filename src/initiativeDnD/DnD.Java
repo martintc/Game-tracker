@@ -7,8 +7,9 @@ public class DnD {
 	public static int initiativeSpot = 0;
 	
 	public static void run(){
+		head = null;
 		initiativeDnD.GUI myInterface = new initiativeDnD.GUI();
-		myInterface.setSize(370,600);
+		myInterface.setSize(370,630);
 		myInterface.setVisible(true);
 		myInterface.setResizable(false);
 	}
@@ -17,6 +18,9 @@ public class DnD {
 		String displayText = "";
 		Mob tempMob = head;
 		for(int i = 1; tempMob != null; i++){
+			if(tempMob.getName() == null){
+				break;
+			}
 			displayText += i + ": " + tempMob.getName() + "\t" + "( " + (tempMob.getHp()-tempMob.getDmg()) + " / " + tempMob.getHp() + " )";
 			if(i == initiativeSpot){
 				displayText += "***";
@@ -44,20 +48,6 @@ public class DnD {
 			}else{
 				damage(num, dmg, thisMob.getNextMob());
 			}
-			
 		}
 	}
 }
-
-
-/*-----------------------------------
- * 				To-do
- * 	* Add a scroll bar to the mob list
- * 
- */
-
-
-
-
-
-

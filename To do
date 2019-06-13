@@ -1,0 +1,17 @@
+To do list:
+
+Initiative tracker:
+* Implement the wiki database with custom monster popups
+* On the monster popups include a button that launches the wiki page in default browser
+
+Wiki grabber:
+* Remove special characters from entries (eg "&#32;")
+* Continue working through rows. Start row 5
+* Account for both CONDITION and DAMAGE Immunities... https://www.dandwiki.com/wiki/AI_Housing_(5e_Creature)
+
+
+Dice:
+* Do the stuff in Dice.java
+
+Loot:
+* Make Loot.java attempt to automatically load a default database if there is one in the same directory
