@@ -1,6 +1,7 @@
 import initiativeDnD.DnD;
 import lootTableDnD.Loot;
 import dice.Dice;
+import MTG.MTGLifeTracker;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -69,7 +70,7 @@ class Main {
 		games.add("DnD Initiative");
 		games.add("DnD Loot");
 		games.add("Dice Manager");
-
+		games.add("Magic The Gathering");
 		return games;
 	}
 
@@ -85,6 +86,9 @@ class Main {
 				Loot.run();
 			}else if(choice.equals("Dice Manager")){
 				Dice.run();
+			} else if (choice.equals("Magic The Gathering")) {
+				MTGLifeTracker mtg = new MTGLifeTracker();
+				mtg.run();
 			}
 		}	
 	}
